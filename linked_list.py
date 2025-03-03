@@ -124,3 +124,32 @@ class LinkedList:
         while temp is not None:
             print(temp.value)
             temp = temp.next
+
+    def has_loop(self):
+        slow = self.head
+        fast = self.head
+        while fast is not None and fast.next is not None:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                return True
+        return False
+
+    def find_middle_node(self):
+        slow = self.head
+        fast = self.head
+        while fast is not None and fast.next is not None:
+            slow = slow.next
+            fast = fast.next.next
+        return slow
+
+def find_kth_from_end(ll, k):
+    slow = fast = ll.head
+    for _ in range(k):
+        if fast is None:
+            return None
+        fast = fast.next
+    while fast:
+        slow = slow.next
+        fast = fast.next
+    return slow
